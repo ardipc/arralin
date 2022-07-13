@@ -129,7 +129,7 @@ export default function Home() {
             <div className="text-center mb-5">
               <div className="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i className="bi bi-envelope" /></div>
               <h2 className="fw-bolder">Get in touch</h2>
-              <p className="lead mb-0">We'd love to hear from you</p>
+              <p className="lead mb-0">We had love to hear from you</p>
             </div>
             <div className="row gx-5 justify-content-center">
               <div className="col-lg-6">
