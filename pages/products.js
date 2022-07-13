@@ -9,7 +9,7 @@ export default function Products() {
         {
             title: "Kauniyah Oil",
             url: "/kauniyah",
-            image: "",
+            image: "https://marketplus.co.id/wp-content/uploads/2021/04/WhatsApp-Image-2021-04-12-at-11.12.25.jpeg",
             price: "Rp 165.000",
             isSale: true,
             rating: 4
@@ -17,7 +17,7 @@ export default function Products() {
         {
             title: "Minyak Kutus Kutus",
             url: "/kutuskutus",
-            image: "",
+            image: "https://asset.kompas.com/crops/-RA6OeUdrXEPeKW_N27KG67BL5U=/40x276:1279x895/750x500/data/photo/2019/12/06/5dea64ca7aaf0.jpeg",
             price: "Rp 170.000",
             isSale: true,
             rating: 4
@@ -69,18 +69,19 @@ export default function Products() {
                                                 null
                                         }
                                         {/* Product image*/}
-                                        <img className="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />
+                                        <img className="card-img-top" src={item.image} alt="..." />
                                         {/* Product details*/}
                                         <div className="card-body p-4">
                                             <div className="text-center">
                                                 {/* Product name*/}
                                                 <h5 className="fw-bolder">{item.title}</h5>
                                                 <div className="d-flex justify-content-center small text-warning mb-2">
-                                                    <div className="bi-star-fill" />
-                                                    <div className="bi-star-fill" />
-                                                    <div className="bi-star-fill" />
-                                                    <div className="bi-star-fill" />
-                                                    <div className="bi-star-fill" />
+                                                    {
+                                                        [...Array(item.rating)].map((item, key) => (
+                                                            <div key={key} className="bi-star-fill" />
+                                                        ))
+                                                    }
+                                                    &nbsp;({item.rating}/5)
                                                 </div>
                                                 {/* Product price*/}
                                                 <h4>{item.price}</h4>
