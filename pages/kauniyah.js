@@ -34,7 +34,7 @@ export default function Kauniyah() {
                     </div>
                     <div className="col-lg-5">
                     <h1 className="font-weight-light">Business Name or Tagline</h1>
-                    <p>This is a template that is great for small businesses. It doesn't have too much fancy flare to it, but it makes a great use of the standard Bootstrap core components. Feel free to use this template for any project you want!</p>
+                    <p>This is a template that is great for small businesses. It does not have too much fancy flare to it, but it makes a great use of the standard Bootstrap core components. Feel free to use this template for any project you want!</p>
                         <a className="btn btn-primary" href="https://wa.me/6282334093822">
                             <i className="bi bi-cart"></i> &nbsp; Beli Sekarang
                         </a>
@@ -52,7 +52,7 @@ export default function Kauniyah() {
                         <div className="card-body text-center p-4 p-lg-5 pt-0 pt-lg-0">
                         <div className="feature bg-primary bg-gradient text-white rounded-3 mb-4 mt-n4"><i className="bi bi-collection" /></div>
                         <h2 className="fs-4 fw-bold">Fresh new layout</h2>
-                        <p className="mb-0">With Bootstrap 5, we've created a fresh new layout for this template!</p>
+                        <p className="mb-0">With Bootstrap 5, we have created a fresh new layout for this template!</p>
                         </div>
                     </div>
                     </div>
@@ -79,7 +79,7 @@ export default function Kauniyah() {
                         <div className="card-body text-center p-4 p-lg-5 pt-0 pt-lg-0">
                         <div className="feature bg-primary bg-gradient text-white rounded-3 mb-4 mt-n4"><i className="bi bi-bootstrap" /></div>
                         <h2 className="fs-4 fw-bold">Feature boxes</h2>
-                        <p className="mb-0">We've created some custom feature boxes using Bootstrap icons!</p>
+                        <p className="mb-0">We have created some custom feature boxes using Bootstrap icons!</p>
                         </div>
                     </div>
                     </div>
