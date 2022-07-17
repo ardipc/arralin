@@ -1,38 +1,63 @@
 import Head from "next/head";
 import Link from "next/link";
-import Script from "next/script";
-import { Fragment } from "react";
-import { Accordion, Badge, Button, Carousel, Form } from "react-bootstrap";
+// import Script from "next/script";
+import { Fragment, useEffect, useState } from "react";
+import { Accordion, Badge, Carousel } from "react-bootstrap";
+import { useRouter } from 'next/router'
 
-export default function Kauniyah() {
-    const testi = [
+export async function getServerSideProps() {
+    const testimoni = [
         {
-            slide: 1,
-            items: [
-                {
-                    image: '',
-                    name: 'Winny Adetya',
-                    address: 'Cipinan, Jakarta',
-                    message: '',
-                    rating: 5
-                },
-                {
-                    image: '',
-                    name: 'Mela Apriana',
-                    address: 'Jakarta Timur, Jakarta',
-                    message: '',
-                    rating: 5
-                },
-                {
-                    image: '',
-                    name: 'Naziha Husein',
-                    address: 'Karamat Jati, Jakarta',
-                    message: '',
-                    rating: 5
-                },
-            ],
+            image: 'https://mitrakauniyahoil.id/assets/img/icons/avatar-muslimah.png',
+            name: 'Winny Adetya',
+            address: 'Cipinan, Jakarta',
+            message: '<p>message 1</p>',
+            rating: 5
+        },
+        {
+            image: 'https://mitrakauniyahoil.id/assets/img/man.png',
+            name: 'Mela Apriana',
+            address: 'Jakarta Timur, Jakarta',
+            message: '<p>message 2</p>',
+            rating: 5
+        },
+        {
+            image: 'https://mitrakauniyahoil.id/assets/img/icons/avatar-muslimah.png',
+            name: 'Naziha Husein',
+            address: 'Karamat Jati, Jakarta',
+            message: '<p>message 3</p>',
+            rating: 5
         },
     ];
+
+    return {
+        props: {
+            testimoni
+        }
+    };
+}
+
+export default function Kauniyah({ testimoni }) {
+    
+    const [testi, setTesti] = useState([]);
+    const router = useRouter();
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    useEffect(() => {
+        setTesti(testimoni);
+        import('react-facebook-pixel')
+            .then((x) => x.default)
+            .then((ReactPixel) => {
+                ReactPixel.init('1179483205929207'); // facebookPixelId
+                ReactPixel.pageView();
+
+                router.events.on('routeChangeComplete', () => {
+                    ReactPixel.pageView();
+                });
+            });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [router.events]);
+
     return (
         <Fragment>
             <Head>
@@ -158,53 +183,22 @@ export default function Kauniyah() {
                             testi.map((item, key) => (
                                 <Carousel.Item key={key}>
                                     <div className="container text-center my-4">
-                                        <div className="row">
+                                        <img className="rounded-circle shadow-1-strong mb-4" src={item.image} alt="avatar" style={{width: 150}} />
+                                        <h5 className="mb-3">{item.name}</h5>
+                                        <p>{item.address}</p>
+                                        <p className="text-muted">
+                                            <i className="fas fa-quote-left pe-2" />
+                                            <div dangerouslySetInnerHTML={{ __html: item.message }}></div>
+                                            <i className="fas fa-quote-left pe-2" />
+                                        </p>
+                                        <ul className="list-unstyled d-flex justify-content-center text-warning mb-0">
                                             {
-                                                item.items.map((item, key) => {
-                                                    if (key === 0) {
-                                                        return (
-                                                            <div className="col-lg-4">
-                                                                <img className="rounded-circle shadow-1-strong mb-4" src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(1).webp" alt="avatar" style={{width: 150}} />
-                                                                <h5 className="mb-3">{item.name}</h5>
-                                                                <p>{item.address}</p>
-                                                                <p className="text-muted">
-                                                                <i className="fas fa-quote-left pe-2" />
-                                                                {item.message}
-                                                                </p>
-                                                                <ul className="list-unstyled d-flex justify-content-center text-warning mb-0">
-                                                                    {
-                                                                        [...Array(item.rating)].map((item, key) => (
-                                                                            <li key={key}><i className="bi bi-star-fill" /></li>
-                                                                        ))
-                                                                    }
-                                                                    &nbsp;({item.rating}/5)
-                                                                </ul>
-                                                            </div>
-                                                        );
-                                                    } else {
-                                                        return (
-                                                            <div className="col-lg-4 d-none d-lg-block">
-                                                                <img className="rounded-circle shadow-1-strong mb-4" src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(1).webp" alt="avatar" style={{width: 150}} />
-                                                                <h5 className="mb-3">{item.name}</h5>
-                                                                <p>{item.address}</p>
-                                                                <p className="text-muted">
-                                                                <i className="fas fa-quote-left pe-2" />
-                                                                {item.message}
-                                                                </p>
-                                                                <ul className="list-unstyled d-flex justify-content-center text-warning mb-0">
-                                                                    {
-                                                                        [...Array(item.rating)].map((item, key) => (
-                                                                            <li key={key}><i className="bi bi-star-fill" /></li>
-                                                                        ))
-                                                                    }
-                                                                    &nbsp;({item.rating}/5)
-                                                                </ul>
-                                                            </div>
-                                                        );
-                                                    }
-                                                })
+                                                [...Array(item.rating)].map((item, key) => (
+                                                    <li key={key}><i className="bi bi-star-fill" /></li>
+                                                ))
                                             }
-                                        </div>
+                                            &nbsp;({item.rating}/5)
+                                        </ul>
                                     </div>
                                 </Carousel.Item>
                             ))
